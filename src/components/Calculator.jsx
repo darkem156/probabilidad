@@ -9,18 +9,19 @@ export default function Calculator({ name, description, callback, params, handle
   }
 
   const handleCalc = (e) => {
+    e.preventDefault()
     const result = callback(paramsObject)
     setResult(result)
   }
 
   useEffect(() => {
-    if(result || result === 0) handleCalc();
+    //if(result || result === 0) handleCalc();
   }, [paramsObject])
 
   return (
     <section className="calculator-container">
       <button type="button" className="back" onClick={ handleBack }>Back</button>
-      <div>
+      <form>
         <h1>{ name }</h1>
         <p className="description">{ description }</p>
 
@@ -33,13 +34,13 @@ export default function Calculator({ name, description, callback, params, handle
           }
         </div>
 
-        <button type="" onClick={ handleCalc }>Calcular</button>
+        <button type="submit" onClick={ handleCalc }>Calcular</button>
 
         { result || result === 0
             ? <p>Resultado: {result}</p>
             : <></>
         }
-      </div>
+      </form>
     </section>
   )
 }
